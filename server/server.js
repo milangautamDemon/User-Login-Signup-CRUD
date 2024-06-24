@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectMongoDb from "./module/connectMongoDb.js";
+import userRouter from "./router/router.js";
 
 //create app
 const app = express();
@@ -19,9 +20,7 @@ const URL = process.env.MONGO_URL;
 //connection to database
 connectMongoDb(URL);
 
-app.post("/api", (req, res) => {
-  res.status(200).send("successfully created api !");
-});
+app.use("/api", userRouter);
 
 app.listen(PORT, HOSTNAME, () =>
   console.log(`Server is Listen at port ${PORT}`)
