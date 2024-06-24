@@ -1,11 +1,20 @@
 import express from "express";
 import User from "../model/user.js";
+import bcrypt from "bcrypt";
 
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
   //get user data from data for registration
   const { userName, password } = req.body;
+
+  // Check if userName is provided
+  if (!userName && !password) {
+    return res.status(400).send({
+      err_code: "USERNAME & PASSWORD REQUIRED",
+      message: "UserName & Password is required",
+    });
+  }
 
   //check if username already exists
   const isExists = await User.findOne({ userName: userName });
@@ -20,7 +29,7 @@ router.post("/register", async (req, res) => {
   }
 
   //generate Salt
-  const genSalt = 10;
+  const genSalt = await bcrypt.genSalt(10);
 
   //create hash password
   const hashedPassword = await bcrypt.hash(password, genSalt);
@@ -32,11 +41,12 @@ router.post("/register", async (req, res) => {
   });
 
   //register & save new user
-  await newUser.save();
+  const savedUser = await newUser.save();
 
   res.status(200).send({
     success: true,
     msg: "User Registered Successfully!",
+    data: savedUser,
   });
 });
 
