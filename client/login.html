@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Login</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!--login container-->
+    <div class="user-container container-fluid d-flex flex-row my-5">
+      <div class="image-container">
+        <img src="./images/login.svg" alt="login image" />
+      </div>
+      <div class="user-form d-flex flex-row align-items-center">
+        <form action="" method="post">
+          <div class="userName">
+            <label for="userName">UserName</label>
+            <input type="text" id="userName" />
+          </div>
+          <div class="password">
+            <label for="password">Password</label>
+            <input type="text" id="password" />
+          </div>
+          <button class="btn login-btn">login</button>
+        </form>
+      </div>
+    </div>
+    <!--login container-->
+
+    <!--script-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
