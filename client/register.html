@@ -16,23 +16,42 @@
   <body>
     <!--register container-->
     <div
-      class="user-container container-fluid d-flex flex-row my-5 align-items-center"
+      class="user-container container-fluid d-flex flex-row justify-content-center my-5"
     >
       <div class="image-container">
         <img src="./images/register.svg" alt="register image" />
       </div>
-      <div class="user-form d-flex flex-row align-items-center">
-        <form action="" method="post">
+      <div class="user-form d-flex flex-column px-5 py-4 rounded-lg shadow-lg">
+        <h3 class="fw-semibold text-center text-uppercase text-secondary">
+          User registration
+        </h3>
+        <form action="" method="post" class="d-flex flex-column">
           <div class="userName">
-            <label for="userName">UserName</label>
-            <input type="text" id="userName" />
+            <label for="userName" class="fs-4 text-secondary">UserName</label>
+            <input
+              type="text"
+              id="userName"
+              class="border py-2 px-3 rounded-lg"
+            />
           </div>
           <div class="password">
-            <label for="password">Password</label>
-            <input type="text" id="password" />
+            <label for="password" class="fs-4 text-secondary">Password</label>
+            <input
+              type="text"
+              id="password"
+              class="border py-2 px-3 rounded-lg"
+            />
           </div>
-          <button class="btn regsiter-btn">register</button>
+          <button
+            class="btn btn-primary register-btn mt-3 text-capitalize shadow-sm"
+          >
+            register
+          </button>
         </form>
+        <div class="fs-5 fw-lighter text-black-50">
+          Already have account?
+          <span class="text-primary"> <a href="login.html">login</a></span>
+        </div>
       </div>
     </div>
     <!--register container-->
