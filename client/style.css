@@ -19,9 +19,21 @@
 .user-form {
   background: #f3f3f37a;
   height: 80%;
-  width: calc(60% - 3rem);
+  width: 24rem;
+  gap: 2rem;
 }
 
 .user-form form {
-  width: auto;
+  width: 100%;
+  gap: 1rem;
+}
+form .userName,
+form .password {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+input {
+  width: 100%;
+  outline: none;
 }
