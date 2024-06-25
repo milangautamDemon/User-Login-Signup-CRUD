@@ -17,11 +17,13 @@ router.get("/users", async (req, res) => {
     });
   }
 
+  //itteration throw the users datas to receive each user id & username
   const userData = users.map((user) => ({
     id: user._id,
     userName: user.userName,
   }));
 
+  //success message
   res.status(200).send({
     success: true,
     msg: "Users data fetch successfully !",
