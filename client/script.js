@@ -84,6 +84,37 @@ $(document).ready(function () {
     }
   });
 
+  // reset user
+  $("#resetPasswordForm").submit(async function (e) {
+    e.preventDefault();
+    const userName = $("#userName").val();
+    const oldPassword = $("#oldPassword").val();
+    const newPassword = $("#newPassword").val();
+
+    try {
+      const response = await axios.put(`${apiUrl}/update`, {
+        userName,
+        oldPassword,
+        newPassword,
+      });
+      alert("User password update successfully");
+      $("#resetPasswordForm")[0].reset();
+      window.location.href = "login.html";
+      console.log(response.data);
+    } catch (error) {
+      console.error("There was an error updating user password !", error);
+      if (error.response) {
+        console.error("Response status:", error.response.status);
+        console.error("Response data:", error.response.data);
+        alert(`Failed to update user password: ${error.response.data.msg}`);
+      } else if (error.request) {
+        console.error("Request made but no response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+    }
+  });
+
   //Initial load users when the document is ready
   loadUsers();
   // console.log(loadUsers());
