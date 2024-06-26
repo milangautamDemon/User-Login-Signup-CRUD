@@ -44,7 +44,7 @@ $(document).ready(function () {
       tableBody.empty(); // Clear existing table data
 
       users.forEach((user) => {
-        const tableRow = `<tr data-username=${user.userName}>
+        const tableRow = `<tr id="data-row" data-username=${user.userName} data-id=${user.id}>
           <td>${user.id}</td>
           <td>${user.userName}</td>
         </tr>`;
@@ -57,5 +57,14 @@ $(document).ready(function () {
 
   //Initial load users when the document is ready
   loadUsers();
-  console.log(loadUsers());
+  // console.log(loadUsers());
+
+  // Show user details in modal
+  $("#user-table").on("click", "#data-row", function () {
+    const userName = $(this).data("username");
+    const id = $(this).data("id");
+    $("#modalUsername").text(userName);
+    $("#modalId").text(id);
+    $("#userModal").modal("show");
+  });
 });
