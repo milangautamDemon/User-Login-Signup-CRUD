@@ -37,3 +37,6 @@ input {
   width: 100%;
   outline: none;
 }
+tbody tr {
+  cursor: pointer;
+}
