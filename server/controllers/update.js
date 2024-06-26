@@ -6,10 +6,10 @@ const router = express.Router();
 
 router.put("/update", async (req, res) => {
   //receive the user data from the request body
-  const { userName, password, newPassword } = req.body;
+  const { userName, oldPassword, newPassword } = req.body;
 
   //check if user data found or not
-  if (!userName && !password) {
+  if (!userName && !oldPassword) {
     return res.status(400).send({
       success: false,
       err_msg: "USER DETAILS NOT FOUND !!!",
@@ -18,7 +18,9 @@ router.put("/update", async (req, res) => {
   }
 
   //check if user exists or not
-  const userIsExists = await User.findOne({ userName: userName });
+  const userIsExists = await User.findOne({
+    userName,
+  });
 
   //if not exists then throw error message
   if (!userIsExists) {
@@ -29,14 +31,18 @@ router.put("/update", async (req, res) => {
     });
   }
 
+  console.log(userIsExists);
+
   //get password from the user database & assign in variable
   const userPassword = await userIsExists.password;
+  console.log(userPassword);
 
   //check if user password match or not
-  const IsPasswordMatch = await bcrypt.compare(password, userPassword);
+  const isPasswordMatch = await bcrypt.compare(oldPassword, userPassword);
+  console.log(isPasswordMatch);
 
   //if user password not match then throw error message
-  if (!IsPasswordMatch) {
+  if (!isPasswordMatch) {
     return res.status(400).send({
       success: false,
       err_msg: "USER USERNAME & PASSWORD NOT MATCH !!!",
@@ -59,10 +65,18 @@ router.put("/update", async (req, res) => {
   //create hash password
   const hashedPassword = await bcrypt.hash(newPassword, salt);
 
+  const id = userIsExists._id;
   //update user
-  const updatedUser = await User.updateOne(
-    { userName },
-    { password: hashedPassword }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    { _id: id },
+    {
+      userName: userName,
+      $set: {
+        password: hashedPassword,
+      },
+    },
+    { new: true }
   );
 
   //send the success message
