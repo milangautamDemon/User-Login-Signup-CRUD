@@ -16,16 +16,22 @@
   </head>
   <body>
     <!--main container-->
-    <div class="container-fluid bg-danger">
+    <div class="container-fluid border-bottom">
       <!--navbar-->
       <nav class="navbar">
-        <div class="container-fluid">
-          <a class="text-white" href="index.html">Navbar</a>
+        <div class="container">
+          <a class="text-primary" href="index.html">Navbar</a>
           <div class="navbar-nav d-flex flex-row">
-            <a class="user-register text-white mr-4" href="register.html"
+            <a
+              class="btn btn-outline-primary rounded-pill shadow-sm mr-4"
+              href="register.html"
               >Register</a
             >
-            <a class="user-login text-white" href="login.html">Login</a>
+            <a
+              class="btn btn-primary text-white rounded-pill shadow-sm"
+              href="login.html"
+              >Login</a
+            >
           </div>
         </div>
       </nav>
@@ -34,8 +40,8 @@
     <!--close main container-->
 
     <!--user hero section-->
-    <section>
-      <h2 class="mt-5">Registered Users</h2>
+    <section class="container">
+      <h4 class="mt-5">Registered Users</h4>
       <table class="table" id="user-table">
         <thead>
           <tr>
