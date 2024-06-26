@@ -55,6 +55,35 @@ $(document).ready(function () {
     }
   }
 
+  // login user
+  $("#loginForm").submit(async function (e) {
+    e.preventDefault();
+    const userName = $("#userName").val();
+    const password = $("#password").val();
+
+    try {
+      const response = await axios.post(`${apiUrl}/login`, {
+        userName,
+        password,
+      });
+      alert("User login successfully");
+      $("#loginForm")[0].reset();
+      window.location.href = "user.html";
+      console.log(response.data);
+    } catch (error) {
+      console.error("There was an error login the user!", error);
+      if (error.response) {
+        console.error("Response status:", error.response.status);
+        console.error("Response data:", error.response.data);
+        alert(`Failed to login user: ${error.response.data.msg}`);
+      } else if (error.request) {
+        console.error("Request made but no response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+    }
+  });
+
   //Initial load users when the document is ready
   loadUsers();
   // console.log(loadUsers());
